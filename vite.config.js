@@ -7,8 +7,5 @@ export default defineConfig({
   css: {
 	devSourcemap: true // <-- works
  }
-//   sourcemap: true,
-//   build: {
-// // 	sourcemap: true,
-// },
+
 })
