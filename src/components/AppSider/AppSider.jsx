@@ -1,41 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Layout, Card, Statistic, List, Typography, Spin } from 'antd';
-import { ArrowDownOutlined, ArrowUpOutlined, LoadingOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from "react";
+import { Layout, Card, Statistic, List, Typography, Spin, Tag } from "antd";
+import { ArrowDownOutlined, ArrowUpOutlined, LoadingOutlined } from "@ant-design/icons";
 // import { cryptoAssets } from '../../data';
-import { fetchAssets, fakeFetchCrypto, options } from '../api';
-import { percentage } from '../../utils';
+import { fetchAssets, fakeFetchCrypto, options } from "../api";
+import { capitalizeFirstLetter, percentage } from "../../utils";
+const { Text } = Typography;
 const siderStyle = {
-	padding: '1rem',
+	padding: "1rem",
 };
 
-const data = [
-	'Racing car sprays burning fuel into crowd.',
-	'Japanese princess to wed commoner.',
-	'Australian walks 100km after outback crash.',
-	'Man charged over missing wedding girl.',
-	'Los Angeles battles huge wildfires.',
-];
 const AppSider = () => {
 	const [loading, setLoading] = useState(false);
 	const [assets, setAssets] = useState([]);
 	const [coins, setCoins] = useState([]);
-	console.log(assets);
-
 	useEffect(() => {
 		async function preload() {
 			try {
 				setLoading(true);
 				const cryptoAssets = await fetchAssets();
-				console.log(cryptoAssets);
 				const resp = await fetch('https://openapiv1.coinstats.app/coins', options);
 				const { result } = await resp.json();
-				// const {result} = await fakeFetchCrypto();
+				// const { result } = await fakeFetchCrypto(); 
+
 				setCoins(result);
+
 				setAssets(
 					cryptoAssets.map((asset) => {
 						const coin = coins.find((c) => c.id === asset.id);
+
 						return {
 							grow: asset.price < coin.price,
+							trade: coin.price,
 							totalAmount: asset.amount * asset.price,
 							totalProfit: asset.amount * coin.price - asset.amount * asset.price,
 							percent: percentage(asset.price, coin.price),
@@ -54,32 +49,46 @@ const AppSider = () => {
 	}, []);
 
 	return loading ? (
-		<Spin indicator={<LoadingOutlined spin />} fullscreen size='large' />
+		<Spin indicator={<LoadingOutlined spin />} fullscreen size="large" />
 	) : (
-		<Layout.Sider width='25%' style={siderStyle}>
-			{
-				assets.map(asset=>(
-					<Card key={asset.id} style={{ marginBottom: '1rem' }} title='Default size card'>
-				<Statistic
-					title={asset.id}
-					value={11.28}
-					precision={2}
-					valueStyle={{ color: '#3f8600' }}
-					prefix={<ArrowUpOutlined />}
-					suffix='%'
-				/>
-				<List
-					size='small'
-					dataSource={data}
-					renderItem={(item) => (
-						<List.Item>
-							<Typography.Text mark>[ITEM]</Typography.Text> {item}
-						</List.Item>
-					)}
-				/>
-			</Card>
-				))
-			}
+		<Layout.Sider width="25%" style={siderStyle}>
+			{assets.map((asset) => (
+				<Card key={asset.id} style={{ marginBottom: "1rem" }}>
+					<Statistic
+						title={capitalizeFirstLetter(asset.id)} 
+						value={asset.totalAmount}
+						precision={2}
+						valueStyle={{ color: asset.grow ? "#3f8600" : "#cf1322" }}
+						prefix={asset.grow ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+						suffix="$"
+					/>
+					<Tag color={asset.grow ? 'lime' : 'red'}>{asset.percent.toFixed(1)} %</Tag>
+					<List
+						size="small"
+						dataSource={[
+							{ title: "куплено", value: asset.amount },
+							{ title: "за сколько?", value: asset.price, dolar: true},
+							{ title: "актуальная цена", value: asset.trade, dolar: true},
+							{ title: "Доход", value: asset.totalProfit, dolar: true },
+						]}
+						renderItem={(item) => (
+							<List.Item>
+								<span>{item.title}</span>
+								<span>
+									{item.dolar ? (
+										<Text type={asset.grow ? 'success' : 'danger'}>
+										{ item.value.toFixed(2)} $
+										</Text>
+									) : (
+										item.value
+									)}
+									
+								</span>
+							</List.Item>
+						)}
+					/>
+				</Card>
+			))}
 			{/* <Card style={{ marginBottom: '1rem' }} title='Default size card'>
 				<Statistic
 					title='Active'

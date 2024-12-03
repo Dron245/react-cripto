@@ -1,7 +1,7 @@
 export const cryptoAssets = [
 	{
 		id: "bitcoin",
-		amount: 1.00,
+		amount: 0.10,
 		price: 94244,
 		date: new Date(),
 	},
@@ -21,7 +21,7 @@ export const cryptoData = {
       name: 'Bitcoin',
       symbol: 'BTC',
       rank: 1,
-      price: 44870.39834657236,
+      price: 95870.39834657236,
       priceBtc: 1,
       volume: 35728788775.15447,
       marketCap: 879141227764.5575,
@@ -49,7 +49,7 @@ export const cryptoData = {
       name: 'Ethereum',
       symbol: 'ETH',
       rank: 2,
-      price: 2262.9329473372445,
+      price: 3562.9329473372445,
       priceBtc: 0.05043730802649077,
       volume: 15049137392.625889,
       marketCap: 271968761037.10645,
