@@ -80,7 +80,7 @@ const AppSider = () => {
 										{item.value.toFixed(2)} $ 
 									</Text>
 									)}
-									{!item.withColor && item.dolar && item.value.toFixed(2)}
+									{!item.withColor && item.dolar && item.value.toFixed(2) + ' $'}
 									{!item.withColor && !item.dolar && item.value.toFixed(2)}
 									{/* {item.withColor ? ( 
 										<Text type={asset.grow ? 'success' : 'danger'}>
