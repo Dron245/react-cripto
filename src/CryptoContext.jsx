@@ -7,7 +7,7 @@ export const CryptoContextProvider = ({children}) => {
 	const [loading, setLoading] = useState(false); // загрузка
 	const [assets, setAssets] = useState([]); // какие валюты купил
 	const [crypto, setCrypto] = useState([]); //база из CRIPTO API
-	console.log(assets, crypto);
+	// console.log(assets, crypto);
 	useEffect(() => {
 		async function preload() {
 			try {
