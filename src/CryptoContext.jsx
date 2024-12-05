@@ -1,28 +1,26 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { fetchAssets, options } from './components/api';
 import { percentage } from './utils';
-const CryptoContext = createContext({
-	loading: false,
-	assets: [], 
-	crypto: [],
-});
+const CryptoContext = createContext({});
 
 export const CryptoContextProvider = ({children}) => {
 	const [loading, setLoading] = useState(false); // загрузка
 	const [assets, setAssets] = useState([]); // какие валюты купил
 	const [crypto, setCrypto] = useState([]); //база из CRIPTO API
+	console.log(assets, crypto);
 	useEffect(() => {
 		async function preload() {
 			try {
 				setLoading(true);
 				const cryptoAssets = await fetchAssets();
+				
 				const resp = await fetch('https://openapiv1.coinstats.app/coins', options);
 				const { result } = await resp.json();
 				// const { result } = await fakeFetchCrypto();
 				
 				setAssets(
 					cryptoAssets.map((asset) => {
-						const coin = crypto.find((c) => c.id === asset.id);
+						const coin = result.find((c) => c.id === asset.id);
 						return {
 							grow: asset.price < coin.price, //доход
 							percent: percentage(asset.price, coin.price), //доход в процентах
@@ -39,17 +37,14 @@ export const CryptoContextProvider = ({children}) => {
 				console.log(`ошибка: ${error}`);
 			}
 		}
-
 		preload();
 	}, []);
 
 	return (
-		
 		<CryptoContext.Provider value={{ loading, crypto, assets }}>
 			{children}
 		</CryptoContext.Provider>
 	);
 };
 
-// export default AppContext
-export default CryptoContext;
+export default CryptoContext
