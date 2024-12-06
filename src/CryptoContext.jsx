@@ -3,7 +3,7 @@ import { fetchAssets, options } from './components/api';
 import { percentage } from './utils';
 const CryptoContext = createContext({});
 
-export const CryptoContextProvider = ({children}) => {
+export const CryptoContextProvider = ({ children }) => {
 	const [loading, setLoading] = useState(false); // загрузка
 	const [assets, setAssets] = useState([]); // какие валюты купил
 	const [crypto, setCrypto] = useState([]); //база из CRIPTO API
@@ -13,11 +13,11 @@ export const CryptoContextProvider = ({children}) => {
 			try {
 				setLoading(true);
 				const cryptoAssets = await fetchAssets();
-				
+
 				const resp = await fetch('https://openapiv1.coinstats.app/coins', options);
 				const { result } = await resp.json();
 				// const { result } = await fakeFetchCrypto();
-				
+
 				setAssets(
 					cryptoAssets.map((asset) => {
 						const coin = result.find((c) => c.id === asset.id);
@@ -47,4 +47,4 @@ export const CryptoContextProvider = ({children}) => {
 	);
 };
 
-export default CryptoContext
+export default CryptoContext;
