@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import CryptoContext from '../../CryptoContext';
 import './appHeader.css';
 import CoinModalInfo from '../CoinModalInfo';
+import FormAssets from '../FormAssets';
 
 const AppHeader = () => {
 	const { crypto } = useContext(CryptoContext);
@@ -56,23 +57,20 @@ const AppHeader = () => {
 				)}
 				onSelect={modalText}
 			/>
-			<Button type='primary' onClick={() => setDrawerOpen(false)}>
+			<Button type='primary' onClick={() => setDrawerOpen(true)}>
 				Open
 			</Button>
 			<Drawer
-				title='Basic Drawer'
+				title='Выберите криптовалюту'
 				width={600}
 				onClose={() => setDrawerOpen(false)}
 				open={drawerOpen}
 			>
-				<p>Some contents...</p>
-				<p>Some contents...</p>
-				<p>Some contents...</p>
+				<FormAssets/>
 			</Drawer>
 			<Modal
 				open={modal}
 				
-				// onOk={handleOk}
 				onCancel={() => setModal(false)}
 				footer={null}
 			>
