@@ -15,8 +15,10 @@ const AppHeader = () => {
 
 	useEffect(() => {
 		const openSelectkey = (event) => {
-			event.target === '/';
-			setOpenSelect((prev) => !prev);
+			if (event.key === '/') {
+				setOpenSelect((prev) => !prev);
+			}
+			
 		};
 		document.addEventListener('keypress', openSelectkey);
 
@@ -26,7 +28,6 @@ const AppHeader = () => {
 	}, []);
 
 	const modalText = (value) => {
-		console.log(value);
 		setCoinSelect(crypto.find((coin) => coin.id === value));
 		setModal(true);
 	};
@@ -61,6 +62,7 @@ const AppHeader = () => {
 				Open
 			</Button>
 			<Drawer
+				destroyOnClose
 				title='Выберите криптовалюту'
 				width={600}
 				onClose={() => setDrawerOpen(false)}
