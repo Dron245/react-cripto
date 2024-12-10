@@ -1,17 +1,11 @@
 import React from "react";
 import { Space, Typography, Flex, Divider, Tag } from "antd";
+import CoinInfo from "./../components/CriptoInfo";
 const CoinModalInfo = ({ coin }) => {
 	console.log(coin);
 	return (
 		<div>
-			<Flex>
-				<img style={{ width: "40px", marginRight: "20px" }} src={coin.icon} />
-				<Typography.Paragraph style={{ marginBottom: "0px" }}>
-					<Typography.Title style={{ marginBottom: "0px" }} level={2}>
-						{coin.symbol} {coin.name}
-					</Typography.Title>
-				</Typography.Paragraph>
-			</Flex>
+			<CoinInfo coin={coin} symbol/>
 			<Divider />
 			<Flex gap={20}>
 				<Typography.Paragraph strong>

@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout } from 'antd';
-const { Header, Sider, Content } = Layout;
-const contentStyle = {
-	textAlign: 'center',
-	minHeight: 'calc(100vh - 64px)',
-	lineHeight: '120px',
-	color: '#fff',
-	backgroundColor: '#001529',
-};
-const AppContent = () => {
-  return (
-	 <Content style={contentStyle}>Content</Content>
-  )
-}
+import CryptoContext from '../../CryptoContext';
+import { Typography } from 'antd';
 
-export default AppContent
+import './appContent.css'
+
+const AppContent = () => {
+	const { assets } = useContext(CryptoContext);
+	console.log(assets);
+	return (
+		<Layout.Content className='content' >
+			<Typography.Title style={{color:'#fff'}} level={3}>
+				{assets
+				.map((asset) => asset.totalAmount)
+				.reduce((acc, v)=>(acc+=v), 0)
+				.toFixed(2)} $
+			</Typography.Title>
+		</Layout.Content>
+	); 
+};
+
+export default AppContent;

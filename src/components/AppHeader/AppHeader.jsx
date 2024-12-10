@@ -68,11 +68,10 @@ const AppHeader = () => {
 				onClose={() => setDrawerOpen(false)}
 				open={drawerOpen}
 			>
-				<FormAssets/>
+				<FormAssets close={()=>setDrawerOpen(false)}/>
 			</Drawer>
 			<Modal
 				open={modal}
-				
 				onCancel={() => setModal(false)}
 				footer={null}
 			>

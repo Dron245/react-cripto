@@ -6,13 +6,13 @@ export function fetchAssets() {
 		}, 500);
 	});
 }
-export function fakeFetchCrypto() {
-	return new Promise((resolve) => {
-	  setTimeout(() => {
-		 resolve(cryptoData)
-	  }, 500)
-	})
- }
+// export function fakeFetchCrypto() {
+// 	return new Promise((resolve) => {
+// 	  setTimeout(() => {
+// 		 resolve(cryptoData)
+// 	  }, 500)
+// 	})
+//  }
 export const options = {
 	method: "GET",
 	headers: {
