@@ -35,12 +35,12 @@ const FormAssets = ({ close }) => {
 	function handleAmountChange(value) {
 		const amount = form.getFieldValue('price');
 		// console.log(value, amount);
-		form.setFieldValue('total', value * amount).toFixed(2);
+		form.setFieldValue('total', value * amount);
 	}
 	function handlePriceChange(value) {
 		const amount = form.getFieldValue('amount');
 		// console.log(value, amount);
-		form.setFieldValue('total', value * amount).toFixed(2);
+		form.setFieldValue('total', value * amount);
 	}
 	function onFinish(value) {
 		const newAsset = {
@@ -107,7 +107,7 @@ const FormAssets = ({ close }) => {
 				labelAlign='left'
 				labelWrap
 				initialValues={{
-					price: +coin.price,
+					price: +coin.price.toFixed(2),
 				}}
 				onFinish={onFinish}
 				style={{

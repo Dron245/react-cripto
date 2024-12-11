@@ -3,14 +3,12 @@ import { Layout, Card, Statistic, List, Typography, Tag } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { capitalizeFirstLetter } from '../../utils';
 import CryptoContext from '../../CryptoContext';
-const siderStyle = {
-	padding: '1rem',
-};
+
 
 const AppSider = () => {
 	const { assets } = useContext(CryptoContext);
 	return (
-		<Layout.Sider width='25%' style={siderStyle}>
+		<Layout.Sider width='25%' style={{paddingTop:'1rem'}}>
 			{assets.map((asset) => (
 				<Card key={asset.id} style={{ marginBottom: '1rem' }}>
 					<Statistic

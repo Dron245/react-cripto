@@ -14,7 +14,7 @@ const AppLayout = () => {
 	return (
 		<Layout>
 			<AppHeader />
-			<Layout>
+			<Layout style={{backgroundColor:'#001529', paddingInline:'1rem', gap:'1rem'}}>
 				<AppSider />
 				<AppContent />
 			</Layout>

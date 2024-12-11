@@ -17,6 +17,7 @@ export const CryptoContextProvider = ({ children }) => {
 				trade: coin.price, // нынешний курс монеты
 				totalAmount: asset.amount * coin.price, //количество денег в данный момент
 				totalProfit: asset.amount * coin.price - asset.amount * asset.price, // доход в дныый момент
+				name: coin.name,
 				...asset,
 			};
 		});
