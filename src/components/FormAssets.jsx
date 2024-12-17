@@ -98,7 +98,7 @@ const FormAssets = ({ close }) => {
 	}
 	return (
 		<>
-			<CoinInfo coin={coin} />
+			<CoinInfo coin={coin} prew setcoin={setcoin} />
 			<Divider />
 			<Form
 				form={form}
