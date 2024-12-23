@@ -5,3 +5,12 @@ export function percentage(a, b) {
 export function capitalizeFirstLetter(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export const cryptoDataLS = () => {
+	const json = localStorage.getItem("Cart");
+	const assets = JSON.parse(json) || [];
+	const data = {
+		assets: assets,
+	};
+	return data;
+};

@@ -5,10 +5,10 @@ import { Typography } from 'antd';
 import Chart from '../Chart';
 import TableCripto from '../TableCripto';
 import './appContent.css'
-
+import { cartSelector } from '../../redux/cart/selectors';
+import {useSelector} from "react-redux";
 const AppContent = () => {
-	const { assets } = useContext(CryptoContext);
-	console.log(assets);
+	const { assets } =useSelector(cartSelector);
 	return (
 		<Layout.Content className='content' >
 			<Typography.Title style={{color:'#fff'}} level={3}>

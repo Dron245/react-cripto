@@ -5,14 +5,14 @@ import CryptoContext from '../../CryptoContext';
 import './appHeader.css';
 import CoinModalInfo from '../CoinModalInfo';
 import FormAssets from '../FormAssets';
+import { crypto } from '../../redux/cart/slice';
 
 const AppHeader = () => {
-	const { crypto } = useContext(CryptoContext);
+	// const { crypto } = useContext(CryptoContext);
 	const [openSelect, setOpenSelect] = useState(false);
 	const [modal, setModal] = useState(false);
 	const [coinSelect, setCoinSelect] = useState(null);
 	const [drawerOpen, setDrawerOpen] = useState(false);
-
 	useEffect(() => {
 		const openSelectkey = (event) => {
 			if (event.key === '/') {

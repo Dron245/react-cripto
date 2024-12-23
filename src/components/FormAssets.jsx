@@ -1,5 +1,8 @@
 import React, { useContext, useState, useRef } from 'react';
 import CryptoContext from '../CryptoContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, crypto } from '../redux/cart/slice';
+
 import {
 	Select,
 	Space,
@@ -12,6 +15,8 @@ import {
 	Result,
 } from 'antd';
 import CoinInfo from './../components/CriptoInfo';
+import { percentage } from '../utils';
+import { cartSelector } from '../redux/cart/selectors';
 
 const validateMessages = {
 	required: '${label} это обязательное поле!',
@@ -23,7 +28,9 @@ const validateMessages = {
 	},
 };
 const FormAssets = ({ close }) => {
-	const { crypto, addAsset } = useContext(CryptoContext);
+	const { assets } =useSelector(cartSelector);
+	const dispatch = useDispatch();
+	// const { crypto } = useContext(CryptoContext);
 	const [coin, setcoin] = useState(null);
 	const [form] = Form.useForm();
 	const [result, setResult] = useState(false);
@@ -48,11 +55,19 @@ const FormAssets = ({ close }) => {
 			amount: value.amount,
 			price: value.price,
 			date: value.date?.$d ?? new Date(),
+
+			// grow: asset.price < coin.price, //доход
+			// percent: percentage(asset.price, coin.price), //доход в процентах
+			// trade: coin.price, // нынешний курс монеты
+			// totalAmount: asset.amount * coin.price, //количество денег в данный момент
+			// totalProfit: asset.amount * coin.price - asset.amount * asset.price, // доход в дныый момент
+			// name: coin.name,
 		};
 		// console.log(newAsset);
 		coinMake.current = newAsset;
 		setResult(true);
-		addAsset(newAsset)
+		// addAsset(newAsset)
+		dispatch(addItem(newAsset))
 	}
 
 	if (result) {
@@ -101,6 +116,7 @@ const FormAssets = ({ close }) => {
 			<CoinInfo coin={coin} prew setcoin={setcoin} />
 			<Divider />
 			<Form
+				clearOnDestroy
 				form={form}
 				name='wrap'
 				labelCol={{ flex: '110px' }}
@@ -131,7 +147,7 @@ const FormAssets = ({ close }) => {
 				</Form.Item>
 
 				<Form.Item label='Цена' name='price'>
-					<InputNumber onChange={handlePriceChange} style={{ width: '200px' }} />
+					<InputNumber  onChange={handlePriceChange} style={{ width: '200px' }} />
 				</Form.Item>
 
 				<Form.Item label='Дата и время' name='date'>

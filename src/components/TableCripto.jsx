@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Table } from 'antd';
 import CryptoContext from '../CryptoContext';
+import {useSelector} from "react-redux";
+import { cartSelector } from '../redux/cart/selectors';
 const TableCripto = () => {
-	const { assets } = useContext(CryptoContext);
+	const { assets } =useSelector(cartSelector);
 	const columns = [
 		{
 			title: 'Криптовалюта',
