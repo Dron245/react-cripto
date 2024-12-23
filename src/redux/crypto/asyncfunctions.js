@@ -4,10 +4,18 @@ import { options } from "../../components/api";
 export const fetchCrypto = createAsyncThunk(
 	"crypto/cryptoStatus",
 	async () => {
-		console.log(133);
 		const  resp  = await fetch('https://openapiv1.coinstats.app/coins', options)
+		if (!resp.ok) {
+			throw new Error('Ошибка при получении данных');
+		}
 		const { result } = await resp.json();
-		const crypto = await result;
+		const crypto =  result;
+		
 		return crypto;
 	}
 );
+
+export const  qwe=() => {
+	const asd = 2+3
+	return asd
+}

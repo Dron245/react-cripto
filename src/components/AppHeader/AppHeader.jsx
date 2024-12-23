@@ -11,12 +11,14 @@ import { selectorCryptoData } from '../../redux/crypto/selectors';
 // import { crypto } from '../../redux/cart/slice';
 
 const AppHeader = () => {
+	 const { crypto } = useSelector(selectorCryptoData);
 	// const { crypto } = useContext(CryptoContext);
-	const { crypto, status } = useSelector(selectorCryptoData);
 	const [openSelect, setOpenSelect] = useState(false);
 	const [modal, setModal] = useState(false);
 	const [coinSelect, setCoinSelect] = useState(null);
 	const [drawerOpen, setDrawerOpen] = useState(false);
+	console.log(crypto);
+	
 	useEffect(() => {
 		const openSelectkey = (event) => {
 			if (event.key === '/') {

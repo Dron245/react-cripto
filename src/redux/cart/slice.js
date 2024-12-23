@@ -1,19 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { cryptoDataLS, percentage } from '../../utils';
-// import { fetchAssets } from '../../components/api';
+import { fetchCrypto, qwe } from '../crypto/asyncfunctions';
+import { options } from '../../components/api';
+// import {}
+import { fetchAssets } from '../../components/api';
 // const resp = await fetch('https://openapiv1.coinstats.app/coins', options);
 // const { result } = await resp.json();
 // export const crypto = result;
-// console.log(crypto);
 const { assets } = cryptoDataLS();
 const initialState = {
 	assets,
 };
+const zxc = qwe()
+console.log(zxc);
+
+// console.log(crypto);
+// const crypto = await dispath(fetchCrypto()).unwrap()
 export const cart = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
 		addItem(state, action) {
+			const crypto = fetchCrypto()
+			console.log(crypto);
+			
 			const coin = crypto.find((c) => c.id === action.payload.id);
 			state.assets.push({
 				...action.payload,
@@ -28,22 +38,6 @@ export const cart = createSlice({
 			});
 		},
 	},
-
-	// extraReducers: (builder) => {
-	// 	builder.addCase(fetchAssets.pending, (state) => {
-	// 		state.status = 'load';
-	// 		state.items = [];
-	// 	});
-	// 	builder.addCase(fetchAssets.fulfilled, (state, action) => {
-	// 		state.status = 'success';
-	// 		state.items = action.payload;
-	// 	});
-	// 	builder.addCase(fetchAssets.rejected, (state) => {
-	// 		state.status = 'error';
-	// 		// alert('ошибка в получении пицц');
-	// 		state.items = [];
-	// 	});
-	// },
 });
 
 export const { addItem } = cart.actions;
