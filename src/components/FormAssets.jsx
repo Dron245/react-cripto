@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from 'react';
 import CryptoContext from '../CryptoContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, crypto } from '../redux/cart/slice';
+import { addItem } from '../redux/cart/slice';
 
 import {
 	Select,
@@ -17,6 +17,7 @@ import {
 import CoinInfo from './../components/CriptoInfo';
 import { percentage } from '../utils';
 import { cartSelector } from '../redux/cart/selectors';
+import { selectorCryptoData } from '../redux/crypto/selectors';
 
 const validateMessages = {
 	required: '${label} это обязательное поле!',
@@ -29,6 +30,7 @@ const validateMessages = {
 };
 const FormAssets = ({ close }) => {
 	const { assets } =useSelector(cartSelector);
+	const { crypto, status } = useSelector(selectorCryptoData);
 	const dispatch = useDispatch();
 	// const { crypto } = useContext(CryptoContext);
 	const [coin, setcoin] = useState(null);

@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { cryptoDataLS, percentage } from '../../utils';
-import { options } from '../../components/api';
 // import { fetchAssets } from '../../components/api';
-const resp = await fetch('https://openapiv1.coinstats.app/coins', options);
-const { result } = await resp.json();
-export const crypto = result;
-console.log(crypto);
+// const resp = await fetch('https://openapiv1.coinstats.app/coins', options);
+// const { result } = await resp.json();
+// export const crypto = result;
+// console.log(crypto);
 const { assets } = cryptoDataLS();
 const initialState = {
 	assets,

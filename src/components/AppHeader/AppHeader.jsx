@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Select, Space, Modal, Button, Drawer } from 'antd';
 import { useContext } from 'react';
 import CryptoContext from '../../CryptoContext';
+import { useSelector } from 'react-redux';
+
 import './appHeader.css';
 import CoinModalInfo from '../CoinModalInfo';
 import FormAssets from '../FormAssets';
-import { crypto } from '../../redux/cart/slice';
+import { selectorCryptoData } from '../../redux/crypto/selectors';
+// import { crypto } from '../../redux/cart/slice';
 
 const AppHeader = () => {
 	// const { crypto } = useContext(CryptoContext);
+	const { crypto, status } = useSelector(selectorCryptoData);
 	const [openSelect, setOpenSelect] = useState(false);
 	const [modal, setModal] = useState(false);
 	const [coinSelect, setCoinSelect] = useState(null);

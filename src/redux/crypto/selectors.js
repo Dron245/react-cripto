@@ -1,0 +1,1 @@
+export const selectorCryptoData = (state) => state.crypto;
