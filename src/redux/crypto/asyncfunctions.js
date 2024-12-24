@@ -14,8 +14,3 @@ export const fetchCrypto = createAsyncThunk(
 		return crypto;
 	}
 );
-
-export const  qwe=() => {
-	const asd = 2+3
-	return asd
-}

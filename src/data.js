@@ -1,17 +1,17 @@
-export const cryptoAssets = [
-	{
-		id: "bitcoin",
-		amount: 0.10,
-		price: 94244,
-		date: new Date(),
-	},
-	{
-		id: "ethereum",
-		amount: 1,
-		price: 3400,
-		date: new Date(),
-	},
-];
+// export const cryptoAssets = [
+// 	{
+// 		id: "bitcoin",
+// 		amount: 0.10,
+// 		price: 94244,
+// 		date: new Date(),
+// 	},
+// 	{
+// 		id: "ethereum",
+// 		amount: 1,
+// 		price: 3400,
+// 		date: new Date(),
+// 	},
+// ];
 
 export const cryptoData = {
   result: [

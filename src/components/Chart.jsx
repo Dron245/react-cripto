@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import CryptoContext from '../CryptoContext';
 import {useSelector} from "react-redux";
 import { cartSelector } from '../redux/cart/selectors';
-
 
 const Chart = () => {
 	const { assets } =useSelector(cartSelector);

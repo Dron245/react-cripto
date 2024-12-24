@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Layout, Card, Statistic, List, Typography, Tag } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { capitalizeFirstLetter } from '../../utils';
-import CryptoContext from '../../CryptoContext';
-import { useSelector, useDispatch } from 'react-redux'
-import { addItem } from '../../redux/cart/slice';
+import { useSelector } from 'react-redux'
 import { cartSelector } from '../../redux/cart/selectors';
 
 const AppSider = () => {
@@ -14,7 +12,7 @@ const AppSider = () => {
 		
 			<Layout.Sider width='25%' style={{paddingTop:'1rem'}}>
 			{assets.map((asset) => (
-				<Card key={asset.id} style={{ marginBottom: '1rem' }}>
+				<Card key={asset.date} style={{ marginBottom: '1rem' }}>
 					<Statistic
 						title={capitalizeFirstLetter(asset.id)}
 						value={asset.totalAmount}

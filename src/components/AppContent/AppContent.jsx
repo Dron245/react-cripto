@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Layout } from 'antd';
-import CryptoContext from '../../CryptoContext';
 import { Typography } from 'antd';
 import Chart from '../Chart';
 import TableCripto from '../TableCripto';

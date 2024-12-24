@@ -1,8 +1,7 @@
-import React, { useContext, useState, useRef } from 'react';
-import CryptoContext from '../CryptoContext';
+import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../redux/cart/slice';
-
+import {percentage} from '../utils';
 import {
 	Select,
 	Space,
@@ -15,7 +14,6 @@ import {
 	Result,
 } from 'antd';
 import CoinInfo from './../components/CriptoInfo';
-import { percentage } from '../utils';
 import { cartSelector } from '../redux/cart/selectors';
 import { selectorCryptoData } from '../redux/crypto/selectors';
 
@@ -29,15 +27,12 @@ const validateMessages = {
 	},
 };
 const FormAssets = ({ close }) => {
-	const { assets } =useSelector(cartSelector);
 	const { crypto, status } = useSelector(selectorCryptoData);
 	const dispatch = useDispatch();
-	// const { crypto } = useContext(CryptoContext);
 	const [coin, setcoin] = useState(null);
 	const [form] = Form.useForm();
 	const [result, setResult] = useState(false);
 	const coinMake = useRef();
-	// console.log(coinMake.current);
 	function criptoselect(value) {
 		setcoin(crypto.find((c) => c.id === value));
 	}
@@ -49,26 +44,27 @@ const FormAssets = ({ close }) => {
 	function handlePriceChange(value) {
 		const amount = form.getFieldValue('amount');
 		// console.log(value, amount);
-		form.setFieldValue('total', value * amount);
+		form.setFieldValue('total', (value * amount).toFixed(2));
 	}
 	function onFinish(value) {
+		console.log(value);
 		const newAsset = {
 			id: coin.id,
 			amount: value.amount,
 			price: value.price,
 			date: value.date?.$d ?? new Date(),
 
-			// grow: asset.price < coin.price, //доход
-			// percent: percentage(asset.price, coin.price), //доход в процентах
-			// trade: coin.price, // нынешний курс монеты
-			// totalAmount: asset.amount * coin.price, //количество денег в данный момент
-			// totalProfit: asset.amount * coin.price - asset.amount * asset.price, // доход в дныый момент
-			// name: coin.name,
+			grow: value.price < coin.price, //доход
+			percent: percentage(value.price, coin.price), //доход в процентах
+			trade: coin.price, // нынешний курс монеты
+			totalAmount: value.amount * coin.price, //количество денег в данный момент
+			totalProfit:
+			value.amount * coin.price -
+			value.amount * value.price, // доход в дныый момент
+			name: coin.name,
 		};
-		// console.log(newAsset);
 		coinMake.current = newAsset;
 		setResult(true);
-		// addAsset(newAsset)
 		dispatch(addItem(newAsset))
 	}
 

@@ -25,7 +25,6 @@ export const crypto = createSlice({
 		});
 		builder.addCase(fetchCrypto.rejected, (state) => {
 			state.status = 'error';
-			// alert('ошибка в получении пицц');
 			state.crypto = [];
 		});
 	},
