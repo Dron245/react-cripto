@@ -61,7 +61,7 @@ const AppHeader = () => {
 				onSelect={modalText}
 			/>
 			<Button type='primary' onClick={() => setDrawerOpen(true)}>
-				Open
+				Выберите криптовалюту
 			</Button>
 			<Drawer
 				destroyOnClose

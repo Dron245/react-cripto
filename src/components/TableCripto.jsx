@@ -42,7 +42,7 @@ const TableCripto = () => {
 		console.log('params', filters, sorter, extra);
 	};
 	return (
-		<div style={{ marginTop: '20px' , width:'100%'}}>
+		<div style={{ marginTop: '20px' }}>
 			<Table
 				pagination={false}
 				columns={columns}

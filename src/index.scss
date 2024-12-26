@@ -1,1 +1,34 @@
 h1 {font-size: 90px;}
+
+.ant-layout-sider {
+	width:300px !important;
+	min-width:300px !important;
+	max-width:300px !important;
+	@media (max-width: 55.625rem){
+		  width: 100% !important;
+		  max-width: 100% !important;
+		  min-width: 100% !important;
+	}
+}
+.ant-layout[class] {
+	@media (max-width: 55.625rem){
+		  flex-direction: column;
+	}
+}
+
+.ant-table-wrapper {
+	@media (max-width: 55.625rem){
+		  display: none;
+	}
+}
+
+.ant-layout-content {
+	@media (min-width:550px){
+		  width: 500px !important;
+		  flex: 0 0 500px !important;
+	}
+}
+.ant-layout-content canvas {
+	width: 100% !important;
+	height: auto !important;
+}

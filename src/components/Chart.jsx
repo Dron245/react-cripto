@@ -26,7 +26,7 @@ const Chart = () => {
 	],
 };
 	return (
-		<div style={{width:'500px', marginInline:'auto'}}>
+		<div style={{marginInline:'auto'}}>
 			<Doughnut  data={data} />
 		</div>
 	);

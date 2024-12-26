@@ -9,8 +9,8 @@ import {useSelector} from "react-redux";
 const AppContent = () => {
 	const { assets } =useSelector(cartSelector);
 	return (
-		<Layout.Content className='content' >
-			<Typography.Title style={{color:'#fff'}} level={3}>
+		<Layout.Content style={{width:'100%'}} className='content' >
+			<Typography.Title style={{color:'#fff', width:'max-content'}} level={3}>
 				Портфель: {''}
 				{assets
 				.map((asset) => asset.totalAmount)

@@ -10,7 +10,7 @@ const AppSider = () => {
 	console.log(assets);
 	return (
 		
-			<Layout.Sider width='25%' style={{paddingTop:'1rem'}}>
+			<Layout.Sider style={{paddingTop:'1rem'}}>
 			{assets.map((asset) => (
 				<Card key={asset.date} style={{ marginBottom: '1rem' }}>
 					<Statistic
